@@ -2,7 +2,7 @@ from playwright.sync_api import expect,Page,BrowserContext
 from conf import CONF
 
 def test_signup(page):
-    email = f"anand+186@bluefintechpartners.com"
+    email = f"anand+189@bluefintechpartners.com"
     # email = f"girish+182@bluefintechpartners.com"
     password = "P@55word"
 
@@ -35,7 +35,7 @@ def test_signup(page):
     page.locator("#Verified_Lead").click()
     page.screenshot(path="signup1.png")
 
-    page.wait_for_url("**/dashboard")
+    page.wait_for_url("**/dashboard2")
     page.screenshot(path="signup2.png")
 
     # Popup 1
