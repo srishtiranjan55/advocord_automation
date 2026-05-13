@@ -11,6 +11,12 @@ def logged_in_context(browser: Browser) -> BrowserContext:
     page.get_by_placeholder("Password").fill(CONF.PASSWORD)
     page.get_by_role("button", name="Log In").click()
     page.wait_for_load_state("networkidle")
+    page.wait_for_timeout(5000)
+
+    # subscribe_btn = page.locator("#quotaLimitReached")
+    # expect(subscribe_btn).to_be_visible(timeout=10000)
+    # subscribe_btn.click()
+
     page.screenshot(path="logged_in.png")
 
     yield context
