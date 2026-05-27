@@ -1,8 +1,8 @@
-from playwright.sync_api import expect,Page,BrowserContext
-from conf import CONF
+from playwright.sync_api import expect
 
-def test_delete_folder(logged_in_context):
-    page = logged_in_context.pages[0]
+
+def test_download_folder(logged_in_page):
+    page = logged_in_page
     page.locator(".depedentArrowCircle").click()
     page.locator(".navDropdownLabel", has_text="Documents").click()
     page.wait_for_timeout(5000)
@@ -17,6 +17,6 @@ def test_delete_folder(logged_in_context):
     new_page = popup_info.value
     new_page.wait_for_load_state()
     page.wait_for_timeout(5000)
-    new_page.screenshot(path="download_page.png", full_page=True)
+    new_page.screenshot(path="reports/screenshots/download_page.png", full_page=True)
 
 

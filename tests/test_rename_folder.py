@@ -1,13 +1,18 @@
-from playwright.sync_api import expect,Page,BrowserContext
-from conf import CONF
+from playwright.sync_api import expect
 
-def test_delete_folder(logged_in_context):
-    page = logged_in_context.pages[0]
+
+def test_rename_folder(logged_in_page):
+    page = logged_in_page
     page.locator(".depedentArrowCircle").click()
     page.locator(".navDropdownLabel", has_text="Documents").click()
     page.wait_for_timeout(5000)
 
-    folder = page.locator("text=eye.jpg").first
+    page.set_input_files(
+    "input[type='file']",
+    "tests/test_data/hills.jpg"
+    )
+
+    folder = page.locator("text=hills.jpg").first
     folder.click(button="right", force=True)
     page.wait_for_timeout(2000)
     page.get_by_text("Rename", exact=True).click()
@@ -15,10 +20,10 @@ def test_delete_folder(logged_in_context):
 
     rename_input = page.locator("#folderName")
     expect(rename_input).to_be_visible()
-    rename_input.fill("eye.jpg")
+    rename_input.fill("abc.jpg")
     page.wait_for_timeout(2000)
 
     page.locator("#documentPopUpRename").click()
     page.wait_for_timeout(5000)
-    page.screenshot(path="rename_success.png", full_page=True)
+    page.screenshot(path="reports/screenshots/rename_success.png", full_page=True)
 

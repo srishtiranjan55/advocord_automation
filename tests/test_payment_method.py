@@ -1,10 +1,9 @@
-from playwright.sync_api import expect,Page,BrowserContext
-from conf import CONF
+from playwright.sync_api import expect
 
-def test_payment_method(logged_in_context):
-    page = logged_in_context.pages[0]
+
+def test_payment_method(logged_in_page):
+    page = logged_in_page
     page.locator("span.sideBarNavLabel", has_text="Settings").click()
-    page.wait_for_load_state("networkidle")
     page.locator("div.dependentTab span", has_text="Payment Method").click()
     page.wait_for_timeout(2000)
     page.locator("span.marginLeft20.cursorPointer").click()
@@ -23,8 +22,8 @@ def test_payment_method(logged_in_context):
     save_btn = page.locator('input[value="Save"]')
     expect(save_btn).to_be_visible(timeout=10000)
     save_btn.click()
-    page.screenshot(path="payment_method.png")
+    page.screenshot(path="reports/screenshots/payment_method.png")
 
     page.get_by_text("Okay").click(timeout=10000)
-    page.screenshot(path="payment_method1.png")
+    page.screenshot(path="reports/screenshots/payment_method1.png")
 

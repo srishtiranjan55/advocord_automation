@@ -1,8 +1,8 @@
-from playwright.sync_api import expect,Page,BrowserContext
+from playwright.sync_api import expect
 from conf import CONF
 
 def test_signup(page):
-    email = f"anand+186@bluefintechpartners.com"
+    email = f"anand+187@bluefintechpartners.com"
     # email = f"girish+182@bluefintechpartners.com"
     password = "P@55word"
 
@@ -27,36 +27,36 @@ def test_signup(page):
     page.locator("#UnVerified_Lead").click()
     page.wait_for_url("**/accountVerified")
     expect(page.locator("#Verified_Lead")).to_be_visible()
-    page.screenshot(path="signup.png")
+    page.screenshot(path="reports/screenshots/signup.png")
 
     page.locator("#userEmail").fill(email)
     page.locator("input[placeholder='Password']").fill(password)
 
     page.locator("#Verified_Lead").click()
-    page.screenshot(path="signup1.png")
+    page.screenshot(path="reports/screenshots/signup1.png")
 
     page.wait_for_url("**/dashboard")
-    page.screenshot(path="signup2.png")
+    page.screenshot(path="reports/screenshots/signup2.png")
 
     # Popup 1
     expect(page.locator("#Free_Trial")).to_be_visible()
     page.locator("#Free_Trial").click()
-    page.screenshot(path="signup3.png")
+    page.screenshot(path="reports/screenshots/signup3.png")
 
     # Popup 2
     expect(page.locator("#quickCallContiueButtonId")).to_be_visible()
     page.locator("#quickCallContiueButtonId").click()
-    page.screenshot(path="signup4.png")
+    page.screenshot(path="reports/screenshots/signup4.png")
 
     # Popup 3
     expect(page.locator("#rolePopUpSkitButton")).to_be_visible()
     page.locator("#rolePopUpSkitButton").click()
-    page.screenshot(path="signup5.png")
+    page.screenshot(path="reports/screenshots/signup5.png")
 
     # Popup 4
     expect(page.locator("#surveyPopUpSkipButton")).to_be_visible()
     page.locator("#surveyPopUpSkipButton").click()
-    page.screenshot(path="signup6.png")
+    page.screenshot(path="reports/screenshots/signup6.png")
 
 
 

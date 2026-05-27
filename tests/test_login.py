@@ -1,9 +1,10 @@
-from playwright.sync_api import expect,Page,BrowserContext
-from conf import CONF
+import re
 
-def test_check_loging(logged_in_context):
-    page = logged_in_context
-    # page.goto(CONF.BASE_URL)
+from playwright.sync_api import expect
+
+
+def test_check_login(logged_in_page):
+    expect(logged_in_page).to_have_url(re.compile(r".*/dashboard.*"), timeout=60000)
 
 
 # def test_check_loging(logged_in_context):
