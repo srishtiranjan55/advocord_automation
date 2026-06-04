@@ -3,11 +3,12 @@ from playwright.sync_api import expect
 
 def test_payment_method(logged_in_page):
     page = logged_in_page
+    page.wait_for_timeout(5000)
     page.locator("span.sideBarNavLabel", has_text="Settings").click()
     page.locator("div.dependentTab span", has_text="Payment Method").click()
-    page.wait_for_timeout(2000)
+    # edit_icon = page.locator("h3 span.marginLeft20.cursorPointer")
+    # edit_icon.click()
     page.locator("span.marginLeft20.cursorPointer").click()
-
     page.frame_locator('iframe[title*="card number"]') \
     .locator('input[name="cardnumber"]') \
     .fill("4242424242424242")

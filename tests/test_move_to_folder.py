@@ -3,7 +3,9 @@ from playwright.sync_api import expect
 
 def test_move_to_folder(logged_in_page):
     page = logged_in_page
+    page.wait_for_timeout(5000)
     page.locator(".depedentArrowCircle").click()
+    page.wait_for_timeout(5000)
     page.locator(".navDropdownLabel", has_text="Documents").click()
     page.wait_for_timeout(5000)
 
@@ -24,12 +26,4 @@ def test_move_to_folder(logged_in_page):
     page.wait_for_timeout(5000)
     page.screenshot(path="reports/screenshots/moveto_success.png", full_page=True)
 
-    # page.locator("#moveFileButton").click()
-    # page.wait_for_timeout(5000)
-
-    # move_btn = page.get_by_role("button", name="Move")
-
-    # expect(move_btn).to_be_visible()
-    # expect(move_btn).to_be_enabled()
-    # move_btn.click()
 

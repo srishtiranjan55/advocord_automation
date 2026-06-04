@@ -4,6 +4,7 @@ from playwright.sync_api import expect
 def test_rename_folder(logged_in_page):
     page = logged_in_page
     page.locator(".depedentArrowCircle").click()
+    page.wait_for_timeout(5000)
     page.locator(".navDropdownLabel", has_text="Documents").click()
     page.wait_for_timeout(5000)
 
